@@ -91,13 +91,9 @@ class ImageController extends GetxController {
         pageNo: pageKey,
         itemPerPage: pageSize,
       );
-      final isLastPage = imageList.length < pageSize;
-      if (isLastPage) {
-        pagingController.value.appendLastPage(imageList);
-      } else {
-        final nextPageKey = pageKey + 1;
-        pagingController.value.appendPage(imageList, nextPageKey);
-      }
+      print('testooo imageList ${imageList.length}');
+      final nextPageKey = pageKey + 1;
+      pagingController.value.appendPage(imageList, nextPageKey);
     } catch (error) {
       pagingController.value.error = error;
     }

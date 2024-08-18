@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:infinite_image/api/api_service.dart';
-
 import '../../../models/image_data.dart';
 
 class ImageListRepository {
@@ -16,9 +13,10 @@ class ImageListRepository {
     final endpoint = 'list?${Uri(queryParameters: queryParams).query}';
 
     final responseBody = await APIService.get(endpoint);
-    if (responseBody == null) return [];
+    if (responseBody == null || responseBody is! List) return [];
+
     try {
-      final List<dynamic> jsonList = jsonDecode(responseBody);
+      final List<dynamic> jsonList = responseBody;
       return jsonList.map((json) => ImageData.fromJson(json)).toList();
     } catch (e) {
       print('Failed to parse images: $e');
