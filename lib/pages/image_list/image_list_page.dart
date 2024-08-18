@@ -40,12 +40,16 @@ class _ImageListPageState extends State<ImageListPage> {
               ),
               cacheExtent: 2000,
               builderDelegate: PagedChildBuilderDelegate<ImageData>(
-                itemBuilder: (context, e, index) => ImageWidget(
-                  key: ValueKey(e.id),
-                  imageData: e,
-                  save: (e) => controller.downloadImage(e, context),
-                  share: (e) => controller.shareImage(e, context),
-                ),
+                itemBuilder: (context, e, index) {
+                  print('testooo e ${e.id}');
+
+                  return ImageWidget(
+                    key: ValueKey(e.id),
+                    imageData: e,
+                    save: (e) => controller.downloadImage(e, context),
+                    share: (e) => controller.shareImage(e, context),
+                  );
+                },
               ),
             ),
           ),

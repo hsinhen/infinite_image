@@ -35,7 +35,7 @@ class _ImageWidgetState extends State<ImageWidget> {
               widget.imageData.downloadUrl != null &&
                       widget.imageData.downloadUrl!.isNotEmpty
                   ? CachedNetworkImage(
-                      imageUrl: widget.imageData.downloadUrl!,
+                      imageUrl: '${widget.imageData.downloadUrl}',
                       height: 200,
                       fit: BoxFit.cover,
                       imageBuilder: (context, imageProvider) => Container(
@@ -48,23 +48,27 @@ class _ImageWidgetState extends State<ImageWidget> {
                       ),
                       placeholder: (context, url) =>
                           const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) =>
-                          const Center(child: Icon(Icons.error)),
+                      errorWidget: (context, url, error) => Container(
+                          height: 200,
+                          color: Colors.black.withOpacity(0.3),
+                          child: const Center(
+                            child: Icon(
+                              Icons.image_not_supported,
+                              color: Colors.red,
+                              size: 40,
+                            ),
+                          )),
                     )
                   : Container(
                       height: 200,
-                      color: Colors.grey[300],
-                      child: Center(
-                        child: Text(
-                          'Image not found',
-                          style: TextStyle(
-                            color: Colors.grey[700],
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      color: Colors.black.withOpacity(0.3),
+                      child: const Center(
+                        child: Icon(
+                          Icons.image_not_supported,
+                          color: Colors.red,
+                          size: 40,
                         ),
-                      ),
-                    ),
+                      )),
               Positioned(
                 top: 8,
                 right: 8,
@@ -75,7 +79,6 @@ class _ImageWidgetState extends State<ImageWidget> {
                       icon: const Icon(Icons.share, color: Colors.white),
                       onPressed: () {
                         widget.share!(widget.imageData.downloadUrl!);
-                        // _shareImage(widget.imageData.downloadUrl!);
                       },
                     ),
                     IconButton(
@@ -83,7 +86,6 @@ class _ImageWidgetState extends State<ImageWidget> {
                       icon: const Icon(Icons.save_alt, color: Colors.white),
                       onPressed: () {
                         widget.save!(widget.imageData.downloadUrl!);
-                        // _downloadImage(widget.imageData.downloadUrl!);
                       },
                     ),
                   ],
