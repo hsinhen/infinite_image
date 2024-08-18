@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:infinite_image/pages/image_list/image_list_page.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-
-import 'api/api_service.dart';
-import 'models/image_data.dart';
-import 'pages/image_list/widget/image_widget.dart';
 
 void main() {
   runApp(const MyApp());
